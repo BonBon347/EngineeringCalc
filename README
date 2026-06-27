@@ -1,0 +1,205 @@
+Описание проекта
+
+Engineering Calculator — это инженерный калькулятор, реализованный на языке Python с использованием объектно-ориентированного подхода.
+
+Программа объединяет несколько независимых модулей вычислений, работающих через единый класс EngineeringCalc. Все выполненные операции автоматически 
+сохраняются в общей истории, что позволяет просматривать результаты после завершения вычислений.
+
+Используемые библиотеки
+
+Стандартные:
+
+math
+
+Дополнительные:
+
+numpy
+matplotlib
+
+Установка:
+
+pip install numpy matplotlib
+
+Классы проекта
+History
+
+Класс History предназначен для хранения истории всех вычислений, выполненных в программе. Каждый модуль инженерного калькулятора использует один
+общий объект данного класса, благодаря чему все операции сохраняются в едином журнале.
+
+Основные методы
+
+add_records(category, operation, result)
+
+Добавляет новую запись в историю.
+
+show()
+
+Выводит на экран все сохранённые операции.
+
+clear()
+
+Очищает историю вычислений.
+
+BasedCalculator
+
+Класс предназначен для выполнения базовых арифметических операций.
+
+Методы
+AddOperation(a, b) — сложение двух чисел.
+SubOperation(a, b) — вычитание.
+MulOperation(a, b) — умножение.
+DivOperation(a, b) — деление.
+Пример использования
+calc.arithmetic.AddOperation(10, 5)
+calc.arithmetic.SubOperation(15, 8)
+calc.arithmetic.MulOperation(4, 7)
+calc.arithmetic.DivOperation(20, 4)
+
+Все результаты автоматически сохраняются в историю операций.
+
+TrigCalculator
+
+Класс выполняет тригонометрические вычисления.
+
+Методы
+Прямые тригонометрические функции
+SinOperationGrad(deg)
+SinOperationRad(rad)
+CosOperationGrad(deg)
+CosOperationRad(rad)
+TanOperationGrad(deg)
+TanOperationRad(rad)
+Обратные тригонометрические функции
+AsinOperation(value)
+AcosOperation(value)
+AtanOperation(value)
+Пример использования
+calc.trigonometry.SinOperationGrad(30)
+calc.trigonometry.CosOperationRad(1.57)
+calc.trigonometry.TanOperationGrad(45)
+
+calc.trigonometry.AsinOperation(0.5)
+calc.trigonometry.AcosOperation(0.2)
+calc.trigonometry.AtanOperation(1)
+
+Все вычисления автоматически заносятся в историю.
+
+InteractiveGraphCalculator
+
+Класс предназначен для построения графиков математических функций.
+
+Функции задаются в виде строк с использованием переменной x и библиотеки numpy.
+
+Метод
+
+*PlotOperation(functions)
+
+Принимает одну или несколько функций и строит их графики.
+
+Пример использования
+calc.graph.PlotOperation(
+    "x**2",
+    "np.sin(x)",
+    "np.cos(x)",
+    "np.exp(-x**2)"
+)
+
+После запуска открывается окно Matplotlib.
+
+Управление осуществляется клавишей Пробел:
+
+переход к следующему графику;
+после последнего графика отображаются все построенные функции одновременно.
+
+Каждое успешное или ошибочное построение сохраняется в историю.
+
+IntegrationCalculator
+
+Класс выполняет численное вычисление определённых интегралов методом трапеций.
+
+Метод
+
+IntegrateOperation(func, a, b, n=1000)
+
+Параметры:
+
+func — функция;
+a — нижний предел интегрирования;
+b — верхний предел интегрирования;
+n — количество разбиений.
+Пример использования
+def square(x):
+    return x**2
+
+calc.integration.IntegrateOperation(square, 0, 5)
+
+Результат автоматически добавляется в историю.
+
+MatrixCalculator
+
+Класс выполняет основные операции над матрицами.
+
+Методы
+add_matrices(A, B) — сложение;
+subtract_matrices(A, B) — вычитание;
+multiply_by_scalar(matrix, scalar) — умножение на число;
+multiply_matrices(A, B) — умножение матриц;
+transpose(matrix) — транспонирование;
+determinant(matrix) — вычисление определителя;
+inverse(matrix) — вычисление обратной матрицы.
+Пример использования
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+
+calc.matrix.add_matrices(A, B)
+calc.matrix.subtract_matrices(A, B)
+calc.matrix.multiply_matrices(A, B)
+calc.matrix.transpose(A)
+calc.matrix.determinant(A)
+calc.matrix.inverse(A)
+
+Перед выполнением операций осуществляется проверка корректности размеров матриц.
+
+EngineeringCalc
+
+Главный класс проекта.
+
+При создании объекта автоматически создаются экземпляры всех вычислительных модулей и единый объект истории.
+
+Создание калькулятора
+calc = EngineeringCalc()
+
+После создания становятся доступны следующие модули:
+
+calc.arithmetic
+calc.trigonometry
+calc.graph
+calc.integration
+calc.matrix
+
+Для просмотра общей истории используется метод
+
+calc.show_history()
+Пример полной программы
+calc = EngineeringCalc()
+
+calc.arithmetic.AddOperation(42, 25)
+
+calc.trigonometry.CosOperationRad(1.0472)
+
+calc.graph.PlotOperation(
+    "x**2 - 4",
+    "np.sin(x) * 3"
+)
+
+calc.integration.IntegrateOperation(func1, 0, 2)
+
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+
+calc.matrix.add_matrices(A, B)
+
+calc.show_history()
+
+В данном примере используются все основные модули инженерного калькулятора. После выполнения вычислений вся информация о 
+произведённых операциях выводится с помощью метода show_history().
